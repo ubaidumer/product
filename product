@@ -1,0 +1,105 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "ProductModule",
+        "version": "1.0.0",
+        "description": "CRUD Operations",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/product": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully found product",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    },
+                    "404": {
+                        "description": "Product not found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "expected string parameters ",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "summary": "Find a product"
+            },
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully created",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    },
+                    "400": {
+                        "description": "unexpected inputs",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "summary": "Create a product"
+            }
+        }
+    },
+    "definitions": {
+        "Product": {
+            "title": "Root Type for Product",
+            "description": "{\n    \"productID\",\n    \"name\",\n    \"price\",\n    \"seller\"\n    \n}",
+            "type": "object",
+            "properties": {
+                "productID": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "seller": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "productID": "123ljnkiasd8",
+                "name": "lays",
+                "price": 50,
+                "seller": "ubaid_umer"
+            }
+        }
+    }
+}
